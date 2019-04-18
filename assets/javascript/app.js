@@ -197,5 +197,7 @@ var myQuestions = [
 
 $(document).ready(function () {
     generateQuiz(myQuestions, quizContainer, resultsContainer);
-
+    submitButton.onclick = function () {
+        showResults(myQuestions, quizContainer, resultsContainer);
+    }
 });

@@ -39,3 +39,13 @@ body{
     margin: auto;
     background: black;
 }
+
+.submit{
+    margin: auto;
+    margin-top: 20px;
+    padding: 0;
+}
+
+#submit{
+    background: white;
+}
