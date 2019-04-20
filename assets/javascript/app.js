@@ -1,18 +1,23 @@
 var quizContainer = document.getElementById('quiz');
 var resultsContainer = document.getElementById('results');
+var submitButton = document.getElementById('submit');
 var time = 30;
 
 function generateQuiz(questions, quizContainer, resultsContainer) {
     console.log("generatingquiz");
     $(".content").hide();
+    $(".submit").hide();
 
     $(".introPic").click(function () {
         $(".introPic").hide();
 
         $(".content").show();
+        $(".submit").show();
         intervalID = setInterval(count, 1000);
         showQuestions(questions, quizContainer);
     });
+
+    // $("#submit").click(showResults(myQuestions, quizContainer, resultsContainer));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +67,7 @@ function showResults(questions, quizContainer, resultsContainer) {
     // keep track of user's answers
     var userAnswer = '';
     var numCorrect = 0;
+    var numWrong = 0;
 
     // for each question...
     for (var i = 0; i < questions.length; i++) {
@@ -76,10 +82,20 @@ function showResults(questions, quizContainer, resultsContainer) {
 
         else {
             answerContainers[i].style.color = 'red';
+            if (typeof userAnswer != 'undefined') {
+                numWrong++;
+            }
         }
-    }
 
-    resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+        console.log(userAnswer);
+    }
+    var temp = "You have " + numCorrect + " correct, " + numWrong + " wrong and " + (questions.length - numCorrect - numWrong) + " unanswered.";
+    console.log(temp);
+    resultsContainer.innerHTML = temp;
+
+    $("#time").html("Completed!");
+    $("#quiz").hide();
+    $(".submit").hide();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 var myQuestions = [
